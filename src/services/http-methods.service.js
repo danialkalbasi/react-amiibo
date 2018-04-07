@@ -45,7 +45,7 @@ export default class HttpMethodsService {
                 .then(this.toJson)
                 .catch(error => Promise.reject(this.handleError(url, error)));
         }
-        
+
         return this
             .baseGet(url, getHeaders)
             .then(this.toJson)
@@ -53,7 +53,7 @@ export default class HttpMethodsService {
     }
 
     baseGet(url, headers) {
-        const header = { headers: headers };
+        const header = { headers };
 
         return fetch(url, header).then((result) => {
             if (result.ok) {
@@ -78,7 +78,7 @@ export default class HttpMethodsService {
      */
     setDefaultHeaders() {
         this.headers = new Headers({
-            'Accept': 'application/json',
+            Accept: 'application/json',
             'Content-Type': 'application/json',
         });
     }

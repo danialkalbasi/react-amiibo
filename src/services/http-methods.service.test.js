@@ -2,13 +2,13 @@ import HttpMethodsService from './http-methods.service';
 
 describe('HttpMethodsService', () => {
     let service;
-    let responseData = JSON.stringify({
-        "products": [
-            { "Name": "Cheese", "Price": 2.50, "Location": "Refrigerated foods" },
-            { "Name": "Crisps", "Price": 3, "Location": "the Snack isle" },
-        ]
+    const responseData = JSON.stringify({
+        products: [
+            { Name: 'Cheese', Price: 2.50, Location: 'Refrigerated foods' },
+            { Name: 'Crisps', Price: 3, Location: 'the Snack isle' },
+        ],
     });
-    const responseInit = { "status": 200, "statusText": "success!" };
+    const responseInit = { status: 200, statusText: 'success!' };
 
     beforeEach(() => {
         service = new HttpMethodsService();
@@ -18,15 +18,15 @@ describe('HttpMethodsService', () => {
         it('should set the default headers', () => {
             // Arrange
             const header = new Headers({
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
             });
 
             // Act
-            const headers = service.headers;
+            const { headers } = service;
 
             // Assert
-            expect(service.headers).toEqual(header);
+            expect(headers).toEqual(header);
         });
     });
 
@@ -63,7 +63,7 @@ describe('HttpMethodsService', () => {
         it('should set the default header', () => {
             // Arrange
             const header = new Headers({
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
             });
 
@@ -72,13 +72,13 @@ describe('HttpMethodsService', () => {
 
             // Assert
             expect(service.headers).toEqual(header);
-        })
+        });
     });
 
     describe('toJson', () => {
         it('should return parameter value if the parameter is not Response object', () => {
             // Arrange
-            let param = false;
+            const param = false;
 
             // Act
             const result = service.toJson(param);
@@ -89,7 +89,7 @@ describe('HttpMethodsService', () => {
 
         it('should return promise if the response is valid', () => {
             // Arrange
-            let param = new Response(responseData, responseInit);
+            const param = new Response(responseData, responseInit);
 
             // Act
             const result = service.toJson(param);
@@ -100,13 +100,13 @@ describe('HttpMethodsService', () => {
 
         it('should transform json to js object', () => {
             // Arrange
-            let param = new Response(responseData, responseInit);
-            let jsonParse = JSON.parse(responseData);
+            const param = new Response(responseData, responseInit);
+            const jsonParse = JSON.parse(responseData);
 
-            // Act 
+            // Act
             // Assert
-            const result = service.toJson(param).then(result => {
-                expect(jsonParse).toEqual(result);
+            service.toJson(param).then((jsonResult) => {
+                expect(jsonParse).toEqual(jsonResult);
             });
         });
     });
