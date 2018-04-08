@@ -1,3 +1,5 @@
+import LoadingBarService from './loading-bar.service';
+
 /**
  * This service handles http methods operation
  */
@@ -16,6 +18,7 @@ export default class HttpMethodsService {
      * Set the default headers
      */
     constructor() {
+        this.loadingBarService = new LoadingBarService();
         this.setDefaultHeaders();
     }
 
@@ -54,8 +57,11 @@ export default class HttpMethodsService {
 
     baseGet(url, headers) {
         const header = { headers };
+        this.loadingBarService.enqueue();
 
         return fetch(url, header).then((result) => {
+            this.loadingBarService.dequeue();
+
             if (result.ok) {
                 return result;
             }

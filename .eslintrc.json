@@ -1,14 +1,24 @@
 {
     "extends": "airbnb",
     "parser": "babel-eslint",
-    "plugins": ["eslint-plugin-jasmine"],
-    "globals": { "fetch": false, "Headers": false, "Response": false },
+    "plugins": [
+        "eslint-plugin-jasmine"
+    ],
+    "globals": {
+        "fetch": false,
+        "Headers": false,
+        "Response": false
+    },
     "env": {
         "jasmine": true
     },
     "rules": {
         "import/prefer-default-export": 0,
         "class-methods-use-this": 0,
-        "indent": ["error", 4]
+        "indent": [
+            "error",
+            4
+        ],
+        "react/jsx-filename-extension": 0
     }
 }

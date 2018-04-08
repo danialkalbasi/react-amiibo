@@ -1,0 +1,38 @@
+.list-container {
+    display: inline-block;
+    padding: 0;
+    list-style: none;
+}
+
+.list-group-item {
+    background: #fff;
+    box-shadow: 0px 9px 12px -1px rgba(0, 0, 0, 0.22);
+}
+.item-image-container{
+    width: 70px;
+    float: left;
+}
+.item-image{
+    max-height: 57px;
+    max-width: 57px;
+    float: left;
+    margin-right: 15px;
+    transition: 0.2s;
+}
+.item-image:hover, .list-group-item:hover .item-image{
+    transition: 0.3s;
+    margin-top: -5px;
+}
+.item-text{
+    font-size: 12px;
+    color: #757575;
+    margin-top: 17px;
+}
+.item-character{
+    margin-top: -14px;
+}
+.item-name{
+    margin-top: 0;
+    color: black;
+    font-size: 14px;
+}

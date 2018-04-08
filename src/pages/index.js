@@ -1,3 +1,3 @@
-import GamesListPage from './games-list/games-list.page';
+import Dashboard from './Dashboard/Dashboard';
 
-export { GamesListPage };
+export { Dashboard };
