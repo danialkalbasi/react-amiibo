@@ -1,5 +1,5 @@
-import AmiiboService from './amiibo.service';
-import { HttpMethodsServiceStub } from './stubs';
+import AmiiboService from '../amiibo.service';
+import { HttpMethodsServiceStub } from '../stubs';
 
 describe('AmiiboService', () => {
     let service;

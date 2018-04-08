@@ -1,4 +1,4 @@
-import HttpMethodsService from './http-methods.service';
+import HttpMethodsService from '../http-methods.service';
 
 describe('HttpMethodsService', () => {
     let service;
