@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AmiiboService, HttpMethodsService } from '../../services/';
-import { AmiiboList, Search } from '../../components';
+import { AmiiboList, Search, Header } from '../../components';
+import { Button, Glyphicon } from 'react-bootstrap';
 import './Dashboard.css';
 
 export default class Dashboard extends Component {
@@ -8,7 +9,7 @@ export default class Dashboard extends Component {
         super();
         const httpMethodsService = new HttpMethodsService();
         this.amiiboService = new AmiiboService(httpMethodsService);
-        this.state = { list: [] };
+        this.state = { list: [], clearSearchInput: false };
     }
 
     componentDidMount() {
@@ -19,8 +20,10 @@ export default class Dashboard extends Component {
      * Ge amiibo list and set the state
      */
     getAmbiiboList() {
+        this.setState({ clearSearchInput: true });
         this.amiiboService.list().then(result => {
             this.setState({ list: result });
+            this.setState({ clearSearchInput: false });
         });
     }
 
@@ -119,19 +122,22 @@ export default class Dashboard extends Component {
     render() {
         return (
             <div className="dashboard-container">
-                <div className="container title">
-                    <h2>Amiibo Dashboard</h2>
-                </div>
-                <section>
-                    <div className="container search-container">
+                <div className="dashboard-header">
+                    <Header>
                         <Search
+                            shouldClearInput={this.state.clearSearchInput}
                             onSearchCharacter={(data) => this.onSearchCharacter(data)}
                             onSearchAmiiboSeries={(data) => this.onSearchAmiiboSeries(data)}
                             onSearchGameSeries={(data) => this.onSearchGameSeries(data)}
                             onSearchType={(data) => this.onSearchType(data)}
                         />
-                    </div>
+                    </Header>
+                </div>
+                <section>
                     <div className="container">
+                        <Button onClick={() => this.getAmbiiboList()} className="view-all-button" bsSize="small">
+                            <Glyphicon glyph="th-list" /> View All
+                        </Button>
                         <AmiiboList
                             onSortByType={(sort) => this.onListSortByType(sort)}
                             onSortByName={(sort) => this.onListSortByName(sort)}

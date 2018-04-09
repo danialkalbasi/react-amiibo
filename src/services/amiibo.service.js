@@ -16,7 +16,7 @@ export default class AmiiboService {
 
     getByCharacter(character) {
         return this.httpMethodsService.get(`${URL.GET}/?character=${character}`, true)
-            .then(result => result.amiibo);
+            .then(result => result.amiibo).catch(() => this.handleError());
     }
 
     getByType(name) {
@@ -32,5 +32,9 @@ export default class AmiiboService {
     getByGameSeries(gameSeries) {
         return this.httpMethodsService.get(`${URL.GET}/?gameSeries=${gameSeries}`, true)
             .then(result => result.amiibo);
+    }
+
+    handleError() {
+        return Promise.resolve([]);
     }
 }

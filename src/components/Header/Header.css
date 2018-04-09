@@ -1,0 +1,9 @@
+.header-logo {
+    width: 100%;
+    max-width: 150px;
+}
+
+.children-container {
+    display: inline-flex;
+    padding-top: 23px;
+}

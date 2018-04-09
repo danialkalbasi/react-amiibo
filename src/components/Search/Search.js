@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Form, FormControl, Button, Col, Row, DropdownButton, MenuItem } from 'react-bootstrap';
+import { FormControl, Button, Col, Row, DropdownButton, MenuItem } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import './Search.css';
 
 export default class Search extends Component {
     static propTypes = {
         onSearchCharacter: PropTypes.func.isRequired,
         onSearchGameSeries: PropTypes.func.isRequired,
         onSearchAmiiboSeries: PropTypes.func.isRequired,
-        onSearchType: PropTypes.func.isRequired
+        onSearchType: PropTypes.func.isRequired,
+        shouldClearInput: PropTypes.bool
     }
 
     constructor(props) {
@@ -17,6 +19,12 @@ export default class Search extends Component {
 
     componentDidMount() {
         this.setDefaults();
+    }
+
+    componentWillReceiveProps() {
+        if (this.props.shouldClearInput) {
+            this.setState({ searchText: '' });
+        }
     }
 
     /**
@@ -33,6 +41,7 @@ export default class Search extends Component {
     renderDropDown() {
         return (
             <DropdownButton
+                className="search-dropdown-button"
                 title={this.state.selectedOption.title}
                 id={`dropdown-filter`}
                 onSelect={(data) => this.onChangeDropDownTitle(data)}>
@@ -95,12 +104,21 @@ export default class Search extends Component {
      * It fires when the search button get clicked
      * It send back the category and the search text
      */
-    onSeachClick() {
-        const data = {
-            searchText: this.state.searchText
-        };
+    onSeachClick(event) {
+        event.preventDefault();
+        if (this.state.searchText) {
+            const data = {
+                searchText: this.state.searchText
+            };
 
-        this.state.selectedOption.onSearch(data);
+            this.state.selectedOption.onSearch(data);
+        }
+    }
+
+    onSeachEnter(event) {
+        if (event.key === 'Enter') {
+            this.onSeachClick(event)
+        }
     }
 
     /**
@@ -115,22 +133,20 @@ export default class Search extends Component {
 
     render() {
         return (
-            <Form>
-                <Row>
-                    <Col sm={1} xs={12}>
+            <div className="search-form-container">
+                <Row xs={12}>
+                    <Col md={12} xs={12} className="search-form-inner">
                         {this.renderDropDown()}
-                    </Col>
-                    <Col sm={10} xs={12}>
-                        <FormControl onChange={(event) => this.onSearchTextChange(event)} type="email" placeholder="Search" />
-                    </Col>
-                    <Col sm={1} xs={12}>
+                        <FormControl value={this.state.searchText} onKeyPress={(event) => this.onSeachEnter(event)} className="search-form-input" onChange={(event) => this.onSearchTextChange(event)} type="text" required placeholder="Search" />
                         <Button
+                            type="button"
+                            className="search-form-button"
                             bsStyle="success"
-                            onClick={() => this.onSeachClick()}>
+                            onClick={(event) => this.onSeachClick(event)}>
                             Search</Button>
                     </Col>
                 </Row>
-            </Form >
+            </div >
         );
     }
 }

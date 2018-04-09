@@ -53,12 +53,12 @@ describe('<Search />', () => {
             expect(findDropDownButton.length).toEqual(1)
         });
 
-        it('should render 3 <Col />', () => {
+        it('should render 1 <Col />', () => {
             // Act
             const findCols = component.find('Col');
 
             // Assert
-            expect(findCols.length).toEqual(3)
+            expect(findCols.length).toEqual(1)
         });
 
         it('should render search button', () => {

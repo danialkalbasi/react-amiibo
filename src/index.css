@@ -1,18 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto');
-
 body {
     margin: 0;
     padding: 0;
     background-color: #F7F7F7 !important;
     font-family: 'Open Sans', sans-serif;
 }
-.loading-bar{
+
+.loading-bar {
     position: absolute;
     left: 50%;
     z-index: 1000;
     top: 50%;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: 'Roboto', sans-serif;
+}
+
+*,
+*:active,
+*:focus {
+    outline: none !important;
 }

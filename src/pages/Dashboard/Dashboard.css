@@ -1,9 +1,10 @@
-.dashboard-container {
-    margin-top: 120px;
-}
-.search-container{
+.dashboard-header{
     margin-bottom: 50px;
+    background: #fff;
 }
 .list-container{
     background: #fff;
+}
+.view-all-button{
+    margin-bottom: 20px;
 }
