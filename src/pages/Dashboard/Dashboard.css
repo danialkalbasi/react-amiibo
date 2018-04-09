@@ -1,3 +1,9 @@
 .dashboard-container {
     margin-top: 120px;
 }
+.search-container{
+    margin-bottom: 50px;
+}
+.list-container{
+    background: #fff;
+}

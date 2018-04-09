@@ -17,7 +17,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         {this.renderLoadingBar()}
         <Dashboard></Dashboard>
       </div>
@@ -27,7 +27,7 @@ class App extends Component {
   renderLoadingBar() {
     const spinner = (
       <div className='loading-bar'>
-        <Spinner name="ball-scale-multiple" color="goldenrod" />
+        <Spinner name="ball-scale-multiple" color="#1CACEB" />
       </div>
     );
     return this.state.isLoading ? spinner : null;

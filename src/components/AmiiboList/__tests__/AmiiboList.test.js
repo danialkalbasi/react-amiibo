@@ -21,7 +21,11 @@ describe('<AmiiboList />', () => {
     ];
 
     beforeEach(() => {
-        component = shallow(<AmiiboList list={listData} />);
+        component = shallow(<AmiiboList
+            list={listData}
+            onSortByType={() => { }}
+            onSortByName={() => { }}
+        />);
     });
 
     describe('Initialization', () => {
@@ -45,7 +49,7 @@ describe('<AmiiboList />', () => {
             const lengthOfCol = component.find('Col').length;
 
             // Assert, 4 cols is the header
-            expect(lengthOfCol).toBe(8);
+            expect(lengthOfCol).toBe(12);
         });
     });
 });

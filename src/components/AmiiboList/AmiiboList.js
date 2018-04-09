@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, ListGroupItem, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroupItem, ListGroup, Glyphicon } from 'react-bootstrap';
 import './AmiiboList.css';
 
 export default class AmiiboList extends Component {
     static propTypes = {
-        list: PropTypes.array.isRequired
+        list: PropTypes.array.isRequired,
+        onSortByType: PropTypes.func.isRequired,
+        onSortByName: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
         list: []
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = { sortByType: 'asc', sortByName: 'asc' }
     }
 
     /**
@@ -21,10 +28,14 @@ export default class AmiiboList extends Component {
         }
 
         return (
-            <ListGroup>
-                {this.createHeader()}
-                {this.props.list.map((item, index) => this.createList(item, index))}
-            </ListGroup>)
+            <div>
+                <ListGroup>
+                    {this.createHeader()}
+                    {!this.props.list.length ? this.createNoItemsMessage() : null}
+                    {this.props.list.map((item, index) => this.createList(item, index))}
+                </ListGroup>
+            </div>
+        );
     }
 
     /**
@@ -36,41 +47,99 @@ export default class AmiiboList extends Component {
         return (
             <ListGroupItem key={index}>
                 <Row>
-                    <Col md={4}>
+                    <Col md={1} xs={12}>
+                        <p className='item-text'>{index + 1}</p>
+                    </Col>
+                    <Col md={3} xs={12}>
                         <div className='item-image-container'>
                             <img className='item-image' alt={item.name} src={item.image} />
                         </div>
                         <p className='item-text item-name'>{item.name}</p>
-                        <p className='item-text item-character'>{item.character}</p>
                     </Col>
-                    <Col md={2}>
-                        <p className='item-text'>{item.type}</p>
+                    <Col md={2} xs={12}>
+                        <p className='item-text'>{item.character}</p>
                     </Col>
-                    <Col md={3}>
-                        <p className='item-text'>{item.gameSeries}</p>
-                    </Col>
-                    <Col md={3}>
+                    <Col md={2} xs={12}>
                         <p className='item-text'>{item.amiiboSeries}</p>
                     </Col>
+
+                    <Col md={2} xs={12}>
+                        <p className='item-text'>{item.gameSeries}</p>
+                    </Col>
+
+                    <Col md={2} xs={12}>
+                        <p className='item-text'>{item.type}</p>
+                    </Col>
+
                 </Row>
             </ListGroupItem>);
     }
 
     createHeader() {
         return (
-            <ListGroupItem>
+            <ListGroupItem className="list-header">
                 <Row>
-                    <Col md={4}>
-                        <p>Character</p>
+                    <Col md={1}>
+                        <p className="list-header-title">#</p>
+                    </Col>
+                    <Col md={3}>
+                        <p className="list-header-title" onClick={() => this.sortByName()}>
+                            Name
+                        <Glyphicon className={this.toggleSortIcon(this.state.sortByName)} glyph="sort" />
+                        </p>
                     </Col>
                     <Col md={2}>
-                        <p>Type</p>
+                        <p className="list-header-title">Character</p>
                     </Col>
-                    <Col md={3}>
-                        <p>Game Series</p>
+                    <Col md={2}>
+                        <p className="list-header-title">Amiibo Series</p>
                     </Col>
-                    <Col md={3}>
-                        <p>Amiibo Series</p>
+                    <Col md={2}>
+                        <p className="list-header-title">Game Series</p>
+                    </Col>
+                    <Col md={2}>
+                        <p className="list-header-title" onClick={() => this.sortByType()}>
+                            Type
+                        <Glyphicon className={this.toggleSortIcon(this.state.sortByType)} glyph="sort" />
+                        </p>
+                    </Col>
+                </Row>
+            </ListGroupItem>
+        );
+    }
+
+    sortByType() {
+        if (this.state.sortByType === 'asc') {
+            this.props.onSortByType(this.state.sortByType);
+            this.setState({ sortByType: 'desc' });
+        }
+        else {
+            this.props.onSortByType('desc');
+            this.setState({ sortByType: 'asc' });
+        }
+    }
+
+    sortByName(){
+        if (this.state.sortByName === 'asc') {
+            this.props.onSortByName(this.state.sortByName);
+            this.setState({ sortByName: 'desc' });
+        }
+        else {
+            this.props.onSortByName('desc');
+            this.setState({ sortByName: 'asc' });
+        }
+    }
+
+    toggleSortIcon(sortType) {
+        return sortType === 'asc' ? 'list-header-icon-asc' : 'list-header-icon-desc';
+    }
+
+    createNoItemsMessage() {
+        return (
+            <ListGroupItem className="no-items-message">
+                <Row>
+                    <Col md={12}>
+                        <p>There is no item</p>
                     </Col>
                 </Row>
             </ListGroupItem>
@@ -79,7 +148,7 @@ export default class AmiiboList extends Component {
 
     render() {
         return (
-            <div className="list-group">
+            <div className="list-container">
                 {this.renderAmiiboList()}
             </div>);
     }
