@@ -12,7 +12,6 @@ class App extends Component {
   }
 
   onLoadingBar(isLoading) {
-    console.log(isLoading)
     this.setState({ isLoading: isLoading });
   }
 

@@ -27,6 +27,7 @@ export default class LoadingBarService {
             }, LOADING_BAR.END_DELAY);
         }
     }
+
     isLoading(fn) {
         LoadingBarService.loadingBarEmitter.addListener(LOADING_BAR.LISTENER_NAME, fn);
     }

@@ -36,16 +36,16 @@ describe('<AmiiboList />', () => {
             // Act
             const lengthOfRow = component.find('Row').length;
 
-            // Assert
-            expect(lengthOfRow).toBe(1);
+            // Assert, 1 row is the header
+            expect(lengthOfRow).toBe(2);
         });
 
         it('should render the list with correct number of Cols', () => {
             // Act
             const lengthOfCol = component.find('Col').length;
 
-            // Assert
-            expect(lengthOfCol).toBe(4);
+            // Assert, 4 cols is the header
+            expect(lengthOfCol).toBe(8);
         });
     });
 });

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Row, Col, ListGroupItem, ListGroup } from 'react-bootstrap';
 import './AmiiboList.css';
 
 export default class AmiiboList extends Component {
@@ -20,7 +20,11 @@ export default class AmiiboList extends Component {
             return null;
         }
 
-        return this.props.list.map((item, index) => this.createList(item, index));
+        return (
+            <ListGroup>
+                {this.createHeader()}
+                {this.props.list.map((item, index) => this.createList(item, index))}
+            </ListGroup>)
     }
 
     /**
@@ -30,28 +34,47 @@ export default class AmiiboList extends Component {
      */
     createList(item, index) {
         return (
-            <a key={index} className="list-group-item list-group-item-action">
-                <Grid>
-                    <Row>
-                        <Col md={4}>
-                            <div className='item-image-container'>
-                                <img className='item-image' alt={item.name} src={item.image} />
-                            </div>
-                            <p className='item-text item-name'>{item.name}</p>
-                            <p className='item-text item-character'>{item.character}</p>
-                        </Col>
-                        <Col md={2}>
-                            <p className='item-text'>{item.type}</p>
-                        </Col>
-                        <Col md={3}>
-                            <p className='item-text'>{item.gameSeries}</p>
-                        </Col>
-                        <Col md={3}>
-                            <p className='item-text'>{item.amiiboSeries}</p>
-                        </Col>
-                    </Row>
-                </Grid>
-            </a>);
+            <ListGroupItem key={index}>
+                <Row>
+                    <Col md={4}>
+                        <div className='item-image-container'>
+                            <img className='item-image' alt={item.name} src={item.image} />
+                        </div>
+                        <p className='item-text item-name'>{item.name}</p>
+                        <p className='item-text item-character'>{item.character}</p>
+                    </Col>
+                    <Col md={2}>
+                        <p className='item-text'>{item.type}</p>
+                    </Col>
+                    <Col md={3}>
+                        <p className='item-text'>{item.gameSeries}</p>
+                    </Col>
+                    <Col md={3}>
+                        <p className='item-text'>{item.amiiboSeries}</p>
+                    </Col>
+                </Row>
+            </ListGroupItem>);
+    }
+
+    createHeader() {
+        return (
+            <ListGroupItem>
+                <Row>
+                    <Col md={4}>
+                        <p>Character</p>
+                    </Col>
+                    <Col md={2}>
+                        <p>Type</p>
+                    </Col>
+                    <Col md={3}>
+                        <p>Game Series</p>
+                    </Col>
+                    <Col md={3}>
+                        <p>Amiibo Series</p>
+                    </Col>
+                </Row>
+            </ListGroupItem>
+        );
     }
 
     render() {
