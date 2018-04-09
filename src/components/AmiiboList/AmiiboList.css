@@ -45,10 +45,6 @@
     margin-top: 17px;
 }
 
-.item-character {
-    margin-top: -14px;
-}
-
 .item-name {
     color: #233153;
 }
@@ -89,4 +85,52 @@
     margin-left: 5px;
     transition: 0.3s;
     transform: rotateY(180deg);
+}
+
+@media only screen and (max-width: 990px) {
+    .item-first {
+        border: none;
+    }
+    .item-image-container {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .item-image {
+        max-height: 150px;
+        max-width: 180px;
+        float: none;
+        margin: 10px 0 30px 0;
+    }
+    .item-name {
+        font-weight: bold;
+    }
+    .item-name:before {
+        content: 'Name: ';
+    }
+    .item-game-series:before {
+        content: 'Game Series: ';
+    }
+    .item-amiibo-series:before {
+        content: 'Amiibo Series: ';
+    }
+    .item-character:before {
+        content: 'Character: ';
+        margin-top: 0;
+    }
+    .item-type:before {
+        content: 'Type: ';
+    }
+    .list-container {
+        text-align: center;
+    }
+    .item-number {
+        display: none;
+    }
+    .item-text {
+        font-size: 14px;
+    }
+    .list-header {
+        display: none;
+    }
 }

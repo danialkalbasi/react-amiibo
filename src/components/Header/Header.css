@@ -7,3 +7,13 @@
     display: inline-flex;
     padding-top: 23px;
 }
+
+@media only screen and (max-width: 990px) {
+    .children-container {
+        display: inline;
+    }
+    .header-logo {
+        margin: 0 auto;
+        display: block;
+    }
+}

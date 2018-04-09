@@ -20,7 +20,10 @@
     border-top-left-radius: 0;
     transition: 0.2s;
 }
-.search-form-button:hover, .search-form-button:active, .search-form-button:focus{
+
+.search-form-button:hover,
+.search-form-button:active,
+.search-form-button:focus {
     background-color: rgb(98, 122, 26);
     transition: 0.2s;
 }
@@ -57,4 +60,13 @@
 #dropdown-filter:active,
 #dropdown-filter:focus {
     border-color: #ccc
+}
+
+@media only screen and (max-width: 990px) {
+    .search-form-input {
+        min-width: auto;
+    }
+    .search-form-inner {
+        justify-content: center;
+    }
 }

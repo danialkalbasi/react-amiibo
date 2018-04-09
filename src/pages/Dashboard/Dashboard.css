@@ -1,10 +1,18 @@
-.dashboard-header{
+.dashboard-header {
     margin-bottom: 50px;
     background: #fff;
 }
-.list-container{
+
+.list-container {
     background: #fff;
 }
-.view-all-button{
+
+.view-all-button {
     margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 990px) {
+    .list-container {
+        max-width: 550px;
+    }
 }

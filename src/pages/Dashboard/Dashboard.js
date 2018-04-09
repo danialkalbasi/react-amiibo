@@ -134,7 +134,7 @@ export default class Dashboard extends Component {
                     </Header>
                 </div>
                 <section>
-                    <div className="container">
+                    <div className="container list-container">
                         <Button onClick={() => this.getAmbiiboList()} className="view-all-button" bsSize="small">
                             <Glyphicon glyph="th-list" /> View All
                         </Button>

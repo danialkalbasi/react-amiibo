@@ -32,7 +32,7 @@ export default class AmiiboList extends Component {
                 <ListGroup>
                     {this.createHeader()}
                     {!this.props.list.length ? this.createNoItemsMessage() : null}
-                    {this.props.list.map((item, index) => this.createList(item, index))}
+                    {this.props.list.map((item, index) => this.createListItem(item, index))}
                 </ListGroup>
             </div>
         );
@@ -43,12 +43,12 @@ export default class AmiiboList extends Component {
      * @param {*} item is the amiibo item
      * @param {*} index is the item index
      */
-    createList(item, index) {
+    createListItem(item, index) {
         return (
-            <ListGroupItem key={index}>
+            <ListGroupItem key={index} className={index === 0 ? 'item-first' : ''}>
                 <Row>
                     <Col md={1} xs={12}>
-                        <p className='item-text'>{index + 1}</p>
+                        <p className='item-text item-number'>{index + 1}</p>
                     </Col>
                     <Col md={3} xs={12}>
                         <div className='item-image-container'>
@@ -57,18 +57,18 @@ export default class AmiiboList extends Component {
                         <p className='item-text item-name'>{item.name}</p>
                     </Col>
                     <Col md={2} xs={12}>
-                        <p className='item-text'>{item.character}</p>
+                        <p className='item-text item-character'>{item.character}</p>
                     </Col>
                     <Col md={2} xs={12}>
-                        <p className='item-text'>{item.amiiboSeries}</p>
-                    </Col>
-
-                    <Col md={2} xs={12}>
-                        <p className='item-text'>{item.gameSeries}</p>
+                        <p className='item-text item-amiibo-series'>{item.amiiboSeries}</p>
                     </Col>
 
                     <Col md={2} xs={12}>
-                        <p className='item-text'>{item.type}</p>
+                        <p className='item-text item-game-series'>{item.gameSeries}</p>
+                    </Col>
+
+                    <Col md={2} xs={12}>
+                        <p className='item-text item-type'>{item.type}</p>
                     </Col>
 
                 </Row>
@@ -119,7 +119,7 @@ export default class AmiiboList extends Component {
         }
     }
 
-    sortByName(){
+    sortByName() {
         if (this.state.sortByName === 'asc') {
             this.props.onSortByName(this.state.sortByName);
             this.setState({ sortByName: 'desc' });
