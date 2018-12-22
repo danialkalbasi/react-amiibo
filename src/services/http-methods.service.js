@@ -43,14 +43,12 @@ export default class HttpMethodsService {
                 });
                 return responsePromise;
             }
-            return this
-                .baseGet(url, getHeaders)
+            return this.baseGet(url, getHeaders)
                 .then(this.toJson)
                 .catch(error => Promise.reject(this.handleError(url, error)));
         }
 
-        return this
-            .baseGet(url, getHeaders)
+        return this.baseGet(url, getHeaders)
             .then(this.toJson)
             .catch(error => Promise.reject(this.handleError(url, error)));
     }
@@ -59,14 +57,16 @@ export default class HttpMethodsService {
         const header = { headers };
         this.loadingBarService.enqueue();
 
-        return fetch(url, header).then((result) => {
-            this.loadingBarService.dequeue();
+        return fetch(url, header)
+            .then((result) => {
+                this.loadingBarService.dequeue();
 
-            if (result.ok) {
-                return result;
-            }
-            return Promise.reject(this.handleError(url, JSON.stringify(result)));
-        }).catch(error => Promise.reject(this.handleError(url, error)));
+                if (result.ok) {
+                    return result;
+                }
+                return Promise.reject(this.handleError(url, JSON.stringify(result)));
+            })
+            .catch(error => Promise.reject(this.handleError(url, error)));
     }
 
     /**

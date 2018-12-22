@@ -10,7 +10,7 @@ export default class Search extends Component {
         onSearchAmiiboSeries: PropTypes.func.isRequired,
         onSearchType: PropTypes.func.isRequired,
         shouldClearInput: PropTypes.bool
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -44,10 +44,11 @@ export default class Search extends Component {
                 className="search-dropdown-button"
                 title={this.state.selectedOption.title}
                 id={`dropdown-filter`}
-                onSelect={(data) => this.onChangeDropDownTitle(data)}>
+                onSelect={data => this.onChangeDropDownTitle(data)}
+            >
                 {this.createDropDownOptions()}
             </DropdownButton>
-        )
+        );
     }
 
     /**
@@ -58,23 +59,23 @@ export default class Search extends Component {
             {
                 key: 1,
                 title: 'Character',
-                onSearch: (data) => this.props.onSearchCharacter(data)
+                onSearch: data => this.props.onSearchCharacter(data)
             },
             {
                 key: 2,
                 title: 'Game Series',
-                onSearch: (data) => this.props.onSearchGameSeries(data)
+                onSearch: data => this.props.onSearchGameSeries(data)
             },
             {
                 key: 3,
                 title: 'Amiibo Series',
-                onSearch: (data) => this.props.onSearchAmiiboSeries(data)
+                onSearch: data => this.props.onSearchAmiiboSeries(data)
             },
             {
                 key: 4,
                 title: 'Type',
-                onSearch: (data) => this.props.onSearchType(data)
-            },
+                onSearch: data => this.props.onSearchType(data)
+            }
         ];
 
         return options;
@@ -87,7 +88,11 @@ export default class Search extends Component {
         let options = this.getDropDownOptions();
 
         return options.map(item => {
-            return <MenuItem key={item.key} eventKey={item.key}>{item.title}</MenuItem>
+            return (
+                <MenuItem key={item.key} eventKey={item.key}>
+                    {item.title}
+                </MenuItem>
+            );
         });
     }
 
@@ -117,7 +122,7 @@ export default class Search extends Component {
 
     onSeachEnter(event) {
         if (event.key === 'Enter') {
-            this.onSeachClick(event)
+            this.onSeachClick(event);
         }
     }
 
@@ -127,8 +132,7 @@ export default class Search extends Component {
      */
     onSearchTextChange(event) {
         const searchText = event.target.value;
-
-        this.setState({ searchText: searchText })
+        this.setState({ searchText: searchText });
     }
 
     render() {
@@ -137,16 +141,26 @@ export default class Search extends Component {
                 <Row xs={12}>
                     <Col md={12} xs={12} className="search-form-inner">
                         {this.renderDropDown()}
-                        <FormControl value={this.state.searchText} onKeyPress={(event) => this.onSeachEnter(event)} className="search-form-input" onChange={(event) => this.onSearchTextChange(event)} type="text" required placeholder="Search" />
+                        <FormControl
+                            value={this.state.searchText}
+                            onKeyPress={event => this.onSeachEnter(event)}
+                            className="search-form-input"
+                            onChange={event => this.onSearchTextChange(event)}
+                            type="text"
+                            required
+                            placeholder="Search"
+                        />
                         <Button
                             type="button"
                             className="search-form-button"
                             bsStyle="success"
-                            onClick={(event) => this.onSeachClick(event)}>
-                            Search</Button>
+                            onClick={event => this.onSeachClick(event)}
+                        >
+                            Search
+                        </Button>
                     </Col>
                 </Row>
-            </div >
+            </div>
         );
     }
 }

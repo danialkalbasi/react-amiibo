@@ -1,20 +1,25 @@
 # Usage of Amiibo APIs
 ![React Amiibo](https://github.com/danielkalbasi/react-amiibo/blob/master/public/amiibo-demo.gif?raw=true)
 
-A React application which implements the Amiibo APIs.
+A simple implementation of Amiibo APIs with React. If you are new to react, this project will help you to grasp some of the main concepts of the react and learn a few other useful techniques!
+- Implementation of Loading Bar by a queue.
+- Implementation of services and how it can be used in react.
+- Usage of components and pages and how they communicate.
+- Covered with unit tests. Use jest and enzyme to achieve it. Usage examples of spying and stubbing.
+- Linting integration for code styles analysis.
 
 ## To Get Started
-### 1. Install npm packages
+### Install dependencies
 Run `npm install` or `yarn`
 
-### 2. Run it
-Run `npm run start`
+### Run local server
+Run `yarn start`
 
-## Running unit tests
-Run `npm run test`.
+### Run unit tests
+Run `yarn test`
 
-## Running linting
-Run `npm run lint`.
+### Run linting
+Run `yarn lint`
 
-## Build
-Run `npm run build` to build the project.
+### Run build
+Run `yarn build` to build the project.

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { shallow } from 'enzyme';
 import Dashboard from '../Dashboard';
 import { AmiiboService } from '../../../services';
@@ -11,7 +11,7 @@ describe('<Dashboard />', () => {
         AmiiboService.mockImplementation(() => {
             return {
                 list: () => Promise.resolve([])
-            }
+            };
         });
         component = shallow(<Dashboard />);
     });

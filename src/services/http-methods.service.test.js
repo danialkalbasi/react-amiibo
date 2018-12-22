@@ -4,7 +4,7 @@ describe('HttpMethodsService', () => {
     let service;
     const responseData = JSON.stringify({
         products: [
-            { Name: 'Cheese', Price: 2.50, Location: 'Refrigerated foods' },
+            { Name: 'Cheese', Price: 2.5, Location: 'Refrigerated foods' },
             { Name: 'Crisps', Price: 3, Location: 'the Snack isle' },
         ],
     });
@@ -35,9 +35,8 @@ describe('HttpMethodsService', () => {
         let spyOnBaseGet;
 
         beforeEach(() => {
-            spyOnBaseGet = spyOn(service, 'baseGet')
-                .and.returnValue(Promise.resolve(false));
-            callOnServiceGet = service.get('url', false, null).then(() => { });
+            spyOnBaseGet = spyOn(service, 'baseGet').and.returnValue(Promise.resolve(false));
+            callOnServiceGet = service.get('url', false, null).then(() => {});
         });
 
         it('should call baseGet if the cached is false', () => {
@@ -52,7 +51,7 @@ describe('HttpMethodsService', () => {
 
         it('should return promise if the cache is true', () => {
             // Act
-            callOnServiceGet = service.get('url', true, null).then(() => { });
+            callOnServiceGet = service.get('url', true, null).then(() => {});
 
             // Assert
             expect(callOnServiceGet instanceof Promise).toBeTruthy();

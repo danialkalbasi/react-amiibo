@@ -1,4 +1,4 @@
 export default class HttpMethodsServiceStub {
-    get() { }
-    baseGet() { }
+    get() {}
+    baseGet() {}
 }

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { shallow, mount } from 'enzyme';
+import React from 'react';
+import { shallow } from 'enzyme';
 import Search from '../Search';
-import { DropdownButton } from 'react-bootstrap';
 
 describe('<Search />', () => {
     let component;
@@ -14,12 +13,22 @@ describe('<Search />', () => {
             onSearchGameSeries: {},
             onSearchType: {}
         };
-        component = shallow(<Search
-            onSearchCharacter={(data) => { onSearchResults.onSearchCharacter = data }}
-            onSearchAmiiboSeries={(data) => { onSearchResults.onSearchAmiiboSeries = data }}
-            onSearchGameSeries={(data) => { onSearchResults.onSearchGameSeries = data }}
-            onSearchType={(data) => { onSearchResults.onSearchType = data }}
-        />);
+        component = shallow(
+            <Search
+                onSearchCharacter={data => {
+                    onSearchResults.onSearchCharacter = data;
+                }}
+                onSearchAmiiboSeries={data => {
+                    onSearchResults.onSearchAmiiboSeries = data;
+                }}
+                onSearchGameSeries={data => {
+                    onSearchResults.onSearchGameSeries = data;
+                }}
+                onSearchType={data => {
+                    onSearchResults.onSearchType = data;
+                }}
+            />
+        );
     });
 
     describe('Initialization', () => {
@@ -50,7 +59,7 @@ describe('<Search />', () => {
             const findDropDownButton = component.find('DropdownButton');
 
             // Assert
-            expect(findDropDownButton.length).toEqual(1)
+            expect(findDropDownButton.length).toEqual(1);
         });
 
         it('should render 1 <Col />', () => {
@@ -58,7 +67,7 @@ describe('<Search />', () => {
             const findCols = component.find('Col');
 
             // Assert
-            expect(findCols.length).toEqual(1)
+            expect(findCols.length).toEqual(1);
         });
 
         it('should render search button', () => {
@@ -66,7 +75,7 @@ describe('<Search />', () => {
             const findButton = component.find('Button');
 
             // Assert
-            expect(findButton.length).toEqual(1)
+            expect(findButton.length).toEqual(1);
         });
     });
 

@@ -1,31 +1,29 @@
-import React, { Component } from 'react';
-import { shallow, mount } from 'enzyme';
+import React from 'react';
+import { shallow } from 'enzyme';
 import AmiiboList from '../AmiiboList';
 
 describe('<AmiiboList />', () => {
     let component;
     const listData = [
         {
-            "amiiboSeries": "Super Smash Bros.",
-            "character": "Mario",
-            "gameSeries": "Super Mario",
-            "head": "00000000",
-            "image": "img",
-            "name": "Mario",
-            "release": {
-                "au": "2014-11-29",
+            amiiboSeries: 'Super Smash Bros.',
+            character: 'Mario',
+            gameSeries: 'Super Mario',
+            head: '00000000',
+            image: 'img',
+            name: 'Mario',
+            release: {
+                au: '2014-11-29'
             },
-            "tail": "00000002",
-            "type": "Figure"
+            tail: '00000002',
+            type: 'Figure'
         }
     ];
 
     beforeEach(() => {
-        component = shallow(<AmiiboList
-            list={listData}
-            onSortByType={() => { }}
-            onSortByName={() => { }}
-        />);
+        component = shallow(
+            <AmiiboList list={listData} onSortByType={() => {}} onSortByName={() => {}} />
+        );
     });
 
     describe('Initialization', () => {

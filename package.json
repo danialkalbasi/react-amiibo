@@ -2,6 +2,7 @@
   "name": "react-amiibo",
   "version": "0.1.0",
   "private": true,
+  "author": "Danial Kalbasi",
   "dependencies": {
     "bootstrap": "3.3.7",
     "react": "^16.3.1",

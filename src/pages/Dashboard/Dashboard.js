@@ -29,7 +29,7 @@ export default class Dashboard extends Component {
 
     /**
      * It fires when the user search with character filter
-     * @param {*} data 
+     * @param {*} data
      */
     onSearchCharacter(data) {
         this.amiiboService.getByCharacter(data.searchText).then(list => {
@@ -72,12 +72,7 @@ export default class Dashboard extends Component {
      * @param {*} sortType is the type of the sort
      */
     onListSortByType(sortType) {
-        if (sortType === 'asc') {
-            this.sortAmiiboAscBy('type');
-        }
-        else {
-            this.sortAmiiboDescBy('type');
-        }
+        sortType === 'asc' ? this.sortAmiiboAscBy('type') : this.sortAmiiboDescBy('type');
     }
 
     /**
@@ -85,38 +80,35 @@ export default class Dashboard extends Component {
      * @param {*} sortType is the type of the sort
      */
     onListSortByName(sortType) {
-        if (sortType === 'asc') {
-            this.sortAmiiboAscBy('name');
-        }
-        else {
-            this.sortAmiiboDescBy('name');
-        }
+        sortType === 'asc' ? this.sortAmiiboAscBy('name') : this.sortAmiiboDescBy('name');
     }
 
     /**
      * It sort the list by desc order
      * @param {*} fieldName is the name of object field
      */
-    sortAmiiboDescBy(fieldName) {
-        this.amiiboService.list().then(result => {
+    async sortAmiiboDescBy(fieldName) {
+        const result = await this.amiiboService.list();
+        if (result) {
             const sorted = result.sort((item, nextItem) => {
                 return nextItem[fieldName].localeCompare(item[fieldName]);
             });
             this.setState({ list: sorted });
-        });
+        }
     }
 
     /**
      * It order the list by asc order
      * @param {*} fieldName is the name of the field
      */
-    sortAmiiboAscBy(fieldName) {
-        this.amiiboService.list().then(result => {
+    async sortAmiiboAscBy(fieldName) {
+        const result = await this.amiiboService.list();
+        if (result) {
             const sorted = result.sort((item, nextItem) => {
                 return item[fieldName].localeCompare(nextItem[fieldName]);
             });
             this.setState({ list: sorted });
-        });
+        }
     }
 
     render() {
@@ -126,23 +118,27 @@ export default class Dashboard extends Component {
                     <Header>
                         <Search
                             shouldClearInput={this.state.clearSearchInput}
-                            onSearchCharacter={(data) => this.onSearchCharacter(data)}
-                            onSearchAmiiboSeries={(data) => this.onSearchAmiiboSeries(data)}
-                            onSearchGameSeries={(data) => this.onSearchGameSeries(data)}
-                            onSearchType={(data) => this.onSearchType(data)}
+                            onSearchCharacter={data => this.onSearchCharacter(data)}
+                            onSearchAmiiboSeries={data => this.onSearchAmiiboSeries(data)}
+                            onSearchGameSeries={data => this.onSearchGameSeries(data)}
+                            onSearchType={data => this.onSearchType(data)}
                         />
                     </Header>
                 </div>
                 <section>
                     <div className="container list-container">
-                        <Button onClick={() => this.getAmbiiboList()} className="view-all-button" bsSize="small">
+                        <Button
+                            onClick={() => this.getAmbiiboList()}
+                            className="view-all-button"
+                            bsSize="small"
+                        >
                             <Glyphicon glyph="th-list" /> View All
                         </Button>
                         <AmiiboList
-                            onSortByType={(sort) => this.onListSortByType(sort)}
-                            onSortByName={(sort) => this.onListSortByName(sort)}
-                            list={this.state.list}>
-                        </AmiiboList>
+                            onSortByType={sort => this.onListSortByType(sort)}
+                            onSortByName={sort => this.onListSortByName(sort)}
+                            list={this.state.list}
+                        />
                     </div>
                 </section>
             </div>

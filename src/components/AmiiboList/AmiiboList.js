@@ -7,16 +7,16 @@ export default class AmiiboList extends Component {
     static propTypes = {
         list: PropTypes.array.isRequired,
         onSortByType: PropTypes.func.isRequired,
-        onSortByName: PropTypes.func.isRequired,
-    }
+        onSortByName: PropTypes.func.isRequired
+    };
 
     static defaultProps = {
         list: []
-    }
+    };
 
     constructor(props) {
         super(props);
-        this.state = { sortByType: 'asc', sortByName: 'asc' }
+        this.state = { sortByType: 'asc', sortByName: 'asc' };
     }
 
     /**
@@ -48,31 +48,31 @@ export default class AmiiboList extends Component {
             <ListGroupItem key={index} className={index === 0 ? 'item-first' : ''}>
                 <Row>
                     <Col md={1} xs={12}>
-                        <p className='item-text item-number'>{index + 1}</p>
+                        <p className="item-text item-number">{index + 1}</p>
                     </Col>
                     <Col md={3} xs={12}>
-                        <div className='item-image-container'>
-                            <img className='item-image' alt={item.name} src={item.image} />
+                        <div className="item-image-container">
+                            <img className="item-image" alt={item.name} src={item.image} />
                         </div>
-                        <p className='item-text item-name'>{item.name}</p>
+                        <p className="item-text item-name">{item.name}</p>
                     </Col>
                     <Col md={2} xs={12}>
-                        <p className='item-text item-character'>{item.character}</p>
+                        <p className="item-text item-character">{item.character}</p>
                     </Col>
                     <Col md={2} xs={12}>
-                        <p className='item-text item-amiibo-series'>{item.amiiboSeries}</p>
+                        <p className="item-text item-amiibo-series">{item.amiiboSeries}</p>
                     </Col>
 
                     <Col md={2} xs={12}>
-                        <p className='item-text item-game-series'>{item.gameSeries}</p>
+                        <p className="item-text item-game-series">{item.gameSeries}</p>
                     </Col>
 
                     <Col md={2} xs={12}>
-                        <p className='item-text item-type'>{item.type}</p>
+                        <p className="item-text item-type">{item.type}</p>
                     </Col>
-
                 </Row>
-            </ListGroupItem>);
+            </ListGroupItem>
+        );
     }
 
     createHeader() {
@@ -85,7 +85,10 @@ export default class AmiiboList extends Component {
                     <Col md={3}>
                         <p className="list-header-title" onClick={() => this.sortByName()}>
                             Name
-                        <Glyphicon className={this.toggleSortIcon(this.state.sortByName)} glyph="sort" />
+                            <Glyphicon
+                                className={this.toggleSortIcon(this.state.sortByName)}
+                                glyph="sort"
+                            />
                         </p>
                     </Col>
                     <Col md={2}>
@@ -100,7 +103,10 @@ export default class AmiiboList extends Component {
                     <Col md={2}>
                         <p className="list-header-title" onClick={() => this.sortByType()}>
                             Type
-                        <Glyphicon className={this.toggleSortIcon(this.state.sortByType)} glyph="sort" />
+                            <Glyphicon
+                                className={this.toggleSortIcon(this.state.sortByType)}
+                                glyph="sort"
+                            />
                         </p>
                     </Col>
                 </Row>
@@ -109,25 +115,15 @@ export default class AmiiboList extends Component {
     }
 
     sortByType() {
-        if (this.state.sortByType === 'asc') {
-            this.props.onSortByType(this.state.sortByType);
-            this.setState({ sortByType: 'desc' });
-        }
-        else {
-            this.props.onSortByType('desc');
-            this.setState({ sortByType: 'asc' });
-        }
+        const sortingString = this.state.sortByType === 'asc' ? 'asc' : 'desc';
+        this.props.onSortByType(sortingString);
+        this.setState({ sortByType: sortingString });
     }
 
     sortByName() {
-        if (this.state.sortByName === 'asc') {
-            this.props.onSortByName(this.state.sortByName);
-            this.setState({ sortByName: 'desc' });
-        }
-        else {
-            this.props.onSortByName('desc');
-            this.setState({ sortByName: 'asc' });
-        }
+        const sortingString = this.state.sortByName === 'asc' ? 'asc' : 'desc';
+        this.props.onSortByName(sortingString);
+        this.setState({ sortByName: sortingString });
     }
 
     toggleSortIcon(sortType) {
@@ -147,9 +143,6 @@ export default class AmiiboList extends Component {
     }
 
     render() {
-        return (
-            <div className="list-container">
-                {this.renderAmiiboList()}
-            </div>);
+        return <div className="list-container">{this.renderAmiiboList()}</div>;
     }
 }
