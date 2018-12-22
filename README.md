@@ -1,4 +1,4 @@
-# Usage of Amiibo APIs
+# Implementation of Amiibo API with React
 ![React Amiibo](https://github.com/danielkalbasi/react-amiibo/blob/master/public/amiibo-demo.gif?raw=true)
 
 A simple implementation of Amiibo APIs with React. If you are new to react, this project will help you to grasp some of the main concepts of the react and learn a few other useful techniques!
